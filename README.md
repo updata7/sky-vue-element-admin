@@ -4,29 +4,16 @@
 
 ## 简介
 
-* sky-vue-element-admin 计划做成一个多场景通用的管理后台，基于[vue-element-admin](https://panjiachen.github.io/vue-element-admin)
+* sky-vue-element-admin 管理后台，可根据不同角色，设置不同菜单，计划做成一个通用的后台管理，基于[vue-element-admin](https://panjiachen.github.io/vue-element-admin)
 * 配合后端代码 skynode
-* 已实现功能有
-  * 登录
-  * 菜单管理
-  * 用户管理
-  * 角色管理
-  * 商品管理
-  * 公告管理
-  * 广告管理
-  * 其他，持续更新ing
 
 ## 功能
 
 ```
 - 登录 / 注销
 
-- 权限验证
-  - 菜单权限
-  - 权限配置
-
 - 系统管理
-	- 菜单管理
+	- 菜单管理（含权限配置）
 	- 用户管理
 	- 角色管理
 
@@ -59,9 +46,12 @@
 - 错误页面
   - 401
   - 404
+ 
+- 其他
+	持续开发ing
 ```
 
-![image-20230109142405171](/Users/chenk/Library/Application Support/typora-user-images/image-20230109142405171.png)
+![功能截图](./image/funcs.png)
 
 ## 前序准备
 
@@ -96,7 +86,7 @@ npm run dev
 # 构建测试环境
 npm run build:stage
 
-# 构建生产环境
+# 构建生产环境，生成的文件，可以放入后端代码的public/front下
 npm run build:prod
 ```
 
@@ -137,3 +127,4 @@ npm run lint -- --fix
 ## License
 
 [MIT](https://github.com/PanJiaChen/vue-element-admin/blob/master/LICENSE)
+
