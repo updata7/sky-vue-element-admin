@@ -4,7 +4,7 @@
 
 ## 简介
 
-- sky-vue-element-admin 管理后台，可根据不同角色，设置不同菜单，计划做成一个通用的后台管理，
+- 管理后台，可根据不同角色，设置不同菜单，计划做成一个通用的后台管理，
 - 框架基于[vue-element-admin](https://panjiachen.github.io/vue-element-admin)。感谢[作者PanJiaChen](https://github.com/PanJiaChen)（由于精力有限，本项目只做了简体中文的，并未支持国际版，囧。。。）
 - 配合后端代码 [skynode](https://github.com/updata7/skynode)
 
