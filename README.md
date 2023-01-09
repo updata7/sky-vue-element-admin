@@ -5,7 +5,7 @@
 ## 简介
 
 * sky-vue-element-admin 管理后台，可根据不同角色，设置不同菜单，计划做成一个通用的后台管理，基于[vue-element-admin](https://panjiachen.github.io/vue-element-admin)
-* 配合后端代码 [skynode](https://gitee.com/ckjiang/skynode)
+* 配合后端代码 [skynode](https://github.com/updata7/skynode)
 
 ## 功能
 
@@ -63,7 +63,7 @@
 
 ```bash
 # 克隆项目
-git clone https://gitee.com/ckjiang/sky-vue-element-admin.git
+git clone https://github.com/updata7/sky-vue-element-admin.git
 
 # 进入项目目录
 cd sky-vue-element-admin
