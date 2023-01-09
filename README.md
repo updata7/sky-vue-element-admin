@@ -4,8 +4,9 @@
 
 ## 简介
 
-* sky-vue-element-admin 管理后台，可根据不同角色，设置不同菜单，计划做成一个通用的后台管理，基于[vue-element-admin](https://panjiachen.github.io/vue-element-admin)
-* 配合后端代码 skynode
+* 管理后台，可根据不同角色，设置不同菜单，计划做成一个通用的后台管理，
+* 框架基于[vue-element-admin](https://panjiachen.github.io/vue-element-admin)。感谢[作者PanJiaChen](https://github.com/PanJiaChen)（由于精力有限，本项目只做了简体中文的，并未支持国际版，囧。。。）
+* 配合后端代码 [skynode](https://gitee.com/ckjiang/skynode)
 
 ## 功能
 
@@ -68,11 +69,11 @@ git clone https://gitee.com/ckjiang/sky-vue-element-admin.git
 # 进入项目目录
 cd sky-vue-element-admin
 
+# 建议不要直接使用 cnpm 安装依赖，会有各种诡异的 bug。可以通过如下操作解决 npm 下载速度慢的问题
+npm config set registry https://registry.npmmirror.com
+
 # 安装依赖
 npm install
-
-# 建议不要直接使用 cnpm 安装依赖，会有各种诡异的 bug。可以通过如下操作解决 npm 下载速度慢的问题
-npm config set registry https://registry.npmjs.org
 
 # 启动服务
 npm run dev
@@ -114,7 +115,7 @@ npm run lint -- --fix
 
 密码：12345678
 
-## Donate
+## 捐赠
 
 如果对你有帮助的话，请你点一个星星 star 鼓励，也可以请我喝杯果汁🍹
 
@@ -124,7 +125,6 @@ npm run lint -- --fix
 
 <img width="200" src="https://gitee.com/ckjiang/node-mysql-koa2/raw/main/image/wx.png"/><img width="200" src="https://gitee.com/ckjiang/node-mysql-koa2/raw/main/image/wx-pay.png"/><img width="200" src="https://gitee.com/ckjiang/node-mysql-koa2/raw/main/image/zfb-pay.png"/>
 
-## License
+## 许可证
 
 [MIT](https://github.com/PanJiaChen/vue-element-admin/blob/master/LICENSE)
-
