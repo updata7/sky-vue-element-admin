@@ -74,6 +74,19 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/shopSettings/freight',
+    hidden: true,
+    component: Layout,
+    children: [
+      {
+        path: 'freightAddPage',
+        component: () => import('@/views/shopSettings/freight/freightAddPage'),
+        name: 'FreightAddPage',
+        meta: { title: '添加或编辑模板' }
+      }
+    ]
+  },
+  {
     path: '/404',
     component: () => import('@/views/error-page/404'),
     hidden: true
@@ -202,7 +215,6 @@ export const asyncRoutes = [
       }
     ]
   },
-
   {
     path: '/shopSettings',
     component: Layout,
@@ -228,6 +240,14 @@ export const asyncRoutes = [
         name: 'Advertisement',
         meta: {
           title: '广告管理'
+        }
+      },
+      {
+        path: 'freightPage',
+        component: () => import('@/views/shopSettings/freight/freightPage'),
+        name: 'FreightPage',
+        meta: {
+          title: '快递模板'
         }
       }
     ]

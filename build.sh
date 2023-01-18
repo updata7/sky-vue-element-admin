@@ -1,2 +1,2 @@
 npm run build:prod
-cp -rf dist/ ../../node/tg-bot-server/public/front/
+cp -rf dist/ ../../node/skynode/public/front/
