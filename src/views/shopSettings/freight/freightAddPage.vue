@@ -12,110 +12,108 @@
                             <el-radio :label="1">卖家承担运费</el-radio>
                         </el-radio-group>
                     </el-form-item>
-                    <el-form-item label="快递收费方式">
-                        <el-radio-group v-model="infoForm.freight_type">
-                            <el-radio :label="0">按件计费</el-radio>
-                            <el-radio :label="1">按重量计费</el-radio>
-                        </el-radio-group>
-                    </el-form-item>
-
-                    <el-form-item label="默认运费" class="default-freight">
-                        <div class="line-wrap">
-                            <div class="line">
-                                <el-input v-model="infoForm.start"></el-input>
-                                <div class="text">{{infoForm.freight_type == 0?'件内':'KG内'}}</div>
-                                <el-input v-model="infoForm.start_fee"></el-input>
-                                <div class="text">元</div>
+                    <div v-if="infoForm.charge_type==0">
+                        <el-form-item label="快递收费方式">
+                            <el-radio-group v-model="infoForm.freight_type">
+                                <el-radio :label="0">按件计费</el-radio>
+                                <el-radio :label="1">按重量计费</el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="默认运费" class="default-freight">
+                            <div class="line-wrap">
+                                <div class="line">
+                                    <el-input v-model="infoForm.start"></el-input>
+                                    <div class="text">{{infoForm.freight_type == 0?'件内':'KG内'}}</div>
+                                    <el-input v-model="infoForm.start_fee"></el-input>
+                                    <div class="text">元</div>
+                                </div>
+                                <div class="line2">
+                                    <div class="text2">每增加</div>
+                                    <el-input v-model="infoForm.add"></el-input>
+                                    <div class="text">{{infoForm.freight_type == 0?'件':'KG'}}</div>
+                                    <div class="text2">增加</div>
+                                    <el-input v-model="infoForm.add_fee"></el-input>
+                                    <div class="text">元</div>
+                                </div>
                             </div>
-                            <div class="line2">
-                                <div class="text2">每增加</div>
-                                <el-input v-model="infoForm.add"></el-input>
-                                <div class="text">{{infoForm.freight_type == 0?'件':'KG'}}</div>
-                                <div class="text2">增加</div>
-                                <el-input v-model="infoForm.add_fee"></el-input>
-                                <div class="text">元</div>
+
+                            <!-- <div class="form-table-box">
+                                <el-table :data="infoForm" style="width: 100%" border stripe>
+                                    <el-table-column prop="start" :label="infoForm.freight_type == 0?'首件(个)':'首重(KG)'">
+                                        <template scope="scope">
+                                            <el-input size="mini" v-model="scope.row.start" placeholder="个" autofocus></el-input>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column prop="start_fee" label="运费(元)">
+                                        <template scope="scope">
+                                            <el-input size="mini" v-model="scope.row.start_fee" placeholder="运费"></el-input>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column prop="add" :label="infoForm.freight_type == 0?'续件(个)':'续重(KG)'"
+                                    >
+                                        <template scope="scope">
+                                            <el-input size="mini" v-model="scope.row.add" placeholder="个"></el-input>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column prop="add_fee" :label="infoForm.freight_type == 0?'每续件(个)增加运费(元)':'每续重(个)增加运费(元)'">
+                                        <template scope="scope">
+                                            <el-input size="mini" v-model="scope.row.add_fee" placeholder="运费"></el-input>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                            </div> -->
+
+                        </el-form-item>
+                        <el-form-item label="指定区域运费" class="special-freight">
+                            <div class="form-table-box">
+                                <el-table :data="areaData" style="width: 100%" border stripe>
+                                    <el-table-column prop="areaNames" label="运送到">
+                                    </el-table-column>
+                                    <el-table-column prop="start" :label="infoForm.freight_type == 0?'首件(个)':'首重(KG)'"
+                                                    width="90">
+                                        <template scope="scope">
+                                            <el-input size="mini" v-model="scope.row.start" placeholder="个" autofocus></el-input>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column prop="start_fee" label="运费(元)" width="90">
+                                        <template scope="scope">
+                                            <el-input size="mini" v-model="scope.row.start_fee" placeholder="运费"></el-input>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column prop="add" :label="infoForm.freight_type == 0?'续件(个)':'续重(KG)'"
+                                                    width="90">
+                                        <template scope="scope">
+                                            <el-input size="mini" v-model="scope.row.add" placeholder="个"></el-input>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column prop="add_fee" label="运费(元)" width="90">
+                                        <template scope="scope">
+                                            <el-input size="mini" v-model="scope.row.add_fee" placeholder="运费"></el-input>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column label="操作" width="160">
+                                        <template scope="scope">
+                                            <el-button size="mini" type="primary" plain
+                                                @click="handleRowEdit(scope.$index, scope.row)">编辑地区
+                                            </el-button>
+                                            <el-button
+                                                    @click.native.prevent="deleteRow(scope.$index, areaData)"
+                                                    type="text"
+                                                    size="small">
+                                                移除
+                                            </el-button>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
                             </div>
-                        </div>
-
-                        <!-- <div class="form-table-box">
-                            <el-table :data="infoForm" style="width: 100%" border stripe>
-                                <el-table-column prop="start" :label="infoForm.freight_type == 0?'首件(个)':'首重(KG)'">
-                                    <template scope="scope">
-                                        <el-input size="mini" v-model="scope.row.start" placeholder="个" autofocus></el-input>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column prop="start_fee" label="运费(元)">
-                                    <template scope="scope">
-                                        <el-input size="mini" v-model="scope.row.start_fee" placeholder="运费"></el-input>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column prop="add" :label="infoForm.freight_type == 0?'续件(个)':'续重(KG)'"
-                                >
-                                    <template scope="scope">
-                                        <el-input size="mini" v-model="scope.row.add" placeholder="个"></el-input>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column prop="add_fee" :label="infoForm.freight_type == 0?'每续件(个)增加运费(元)':'每续重(个)增加运费(元)'">
-                                    <template scope="scope">
-                                        <el-input size="mini" v-model="scope.row.add_fee" placeholder="运费"></el-input>
-                                    </template>
-                                </el-table-column>
-                            </el-table>
-                        </div> -->
-
-                    </el-form-item>
-                    <el-form-item label="指定区域运费" class="special-freight">
-                        <div class="form-table-box">
-                            <el-table :data="areaData" style="width: 100%" border stripe>
-                                <el-table-column prop="areaNames" label="运送到">
-                                </el-table-column>
-                                <el-table-column prop="start" :label="infoForm.freight_type == 0?'首件(个)':'首重(KG)'"
-                                                 width="90">
-                                    <template scope="scope">
-                                        <el-input size="mini" v-model="scope.row.start" placeholder="个" autofocus></el-input>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column prop="start_fee" label="运费(元)" width="90">
-                                    <template scope="scope">
-                                        <el-input size="mini" v-model="scope.row.start_fee" placeholder="运费"></el-input>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column prop="add" :label="infoForm.freight_type == 0?'续件(个)':'续重(KG)'"
-                                                 width="90">
-                                    <template scope="scope">
-                                        <el-input size="mini" v-model="scope.row.add" placeholder="个"></el-input>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column prop="add_fee" label="运费(元)" width="90">
-                                    <template scope="scope">
-                                        <el-input size="mini" v-model="scope.row.add_fee" placeholder="运费"></el-input>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column label="操作" width="160">
-                                    <template scope="scope">
-                                        <el-button size="mini" type="primary" plain
-                                            @click="handleRowEdit(scope.$index, scope.row)">编辑地区
-                                        </el-button>
-                                        <el-button
-                                                @click.native.prevent="deleteRow(scope.$index, areaData)"
-                                                type="text"
-                                                size="small">
-                                            移除
-                                        </el-button>
-                                    </template>
-                                </el-table-column>
-                            </el-table>
-                        </div>
-                        <div class="add-btn">
-                            <el-button type="text" @click="addTemplate">+添加指定地区运费</el-button>
-                            <el-form-item>
-                                <el-button type="primary" class="float-right" @click="onAddTemplate">
-                                    保存模板
-                                </el-button>
-                            </el-form-item>
-                        </div>
-                    </el-form-item>
-
+                            <div class="add-btn">
+                                <el-button type="text" @click="addTemplate">+添加指定地区运费</el-button>
+                            </div>
+                        </el-form-item>
+                    </div>
+                    <el-button type="primary" class="float-left" @click="onAddTemplate">
+                        保存模板
+                    </el-button>
                 </el-form>
             </div>
         </div>
@@ -340,7 +338,7 @@
         /*margin: 10px;*/
     }
 
-    .float-right {
+    .float-left {
         float: right;
     }
 

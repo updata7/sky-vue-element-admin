@@ -1,10 +1,6 @@
 <template>
-    <div class="content-page">
-        <div class="content-nav">
-            <el-breadcrumb class="breadcrumb" separator="/">
-                <el-breadcrumb-item :to="{ name: 'freight' }">运费模板</el-breadcrumb-item>
-                <el-breadcrumb-item>偏远地区</el-breadcrumb-item>
-            </el-breadcrumb>
+    <div class="app-container">
+        <div>
             <div class="operation-nav">
                 <el-button type="primary" plain @click="addExceptArea" icon="arrow-left">添加偏远地区</el-button>
                 <el-button type="primary" @click="goBackPage" icon="arrow-left">返回</el-button>
@@ -38,8 +34,6 @@
 </template>
 
 <script>
-    import api from '@/config/api';
-
     export default {
         data() {
             return {
@@ -58,7 +52,7 @@
                 this.$router.go(-1);
             },
             addExceptArea(){
-                this.$router.push({name: 'except_area_add'});
+                this.$router.push({path: '/shopSettings/freight/exceptAreaAddPage'});
             },
             handleRowEdit(index, row) {
                 this.$router.push({ name: 'except_area_add', query: { id: row.id } })
@@ -153,6 +147,9 @@
         float: right;
     }
 
+    .operation-nav{
+        margin-bottom: 10px;
+    }
     .add-btn {
         color: #3a8ee6;
         font-size: 14px;

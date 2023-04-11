@@ -88,7 +88,7 @@ const actions = {
         }
 
         _dealRoutes(data.records)
-        data.records = asyncRoutes  // 写新功能或测试的时候，去掉这里的注释
+        // data.records = asyncRoutes  // 写新功能或测试的时候，去掉这里的注释
         commit('SET_ROUTES', data.records)
         resolve(data)
       }).catch(error => {

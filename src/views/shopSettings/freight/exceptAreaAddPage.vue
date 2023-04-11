@@ -1,46 +1,33 @@
 <template>
-    <div class="content-page">
-        <div class="content-nav">
-            <el-breadcrumb class="breadcrumb" separator="/">
-                <el-breadcrumb-item :to="{ name: 'freight' }">运费模板</el-breadcrumb-item>
-                <el-breadcrumb-item>{{infoForm.id ? '编辑偏远地区' : '添加偏远地区'}}</el-breadcrumb-item>
-            </el-breadcrumb>
-            <div class="operation-nav">
-                <el-button type="primary" @click="goBackPage" icon="arrow-left">返回列表</el-button>
-            </div>
-        </div>
-        <div class="content-main">
-            <div class="form-table-box">
-                <el-form ref="infoForm" :rules="infoRules" :model="infoForm" label-width="120px">
-                    <el-form-item label="名称" prop="content">
-                        <el-input v-model="infoForm.content" placeholder="请输入名称" autofocus></el-input>
-                    </el-form-item>
-                    <el-form-item class="special-freight">
-                        <div class="form-table-box">
-                            <el-table :data="tableData" style="width: 100%" border stripe>
-                                <el-table-column prop="areaName" label="偏远地区"></el-table-column>
-                                <el-table-column label="操作" width="160">
-                                    <template scope="scope">
-                                        <el-button size="small" type="primary" plain
-                                                   @click="handleRowEdit(scope.$index, scope.row)">编辑地区
-                                        </el-button>
-                                    </template>
-                                </el-table-column>
-                            </el-table>
-                        </div>
-                        <!--<div class="add-btn" v-if="tableData.length == 0">-->
-                        <!--<el-button type="text" @click="add_template">+添加偏远地区</el-button>-->
-                        <!--</div>-->
-                    </el-form-item>
-                    <el-form-item>
-                        <el-button v-if="infoForm.id" type="primary" @click="onSaveTemplate">确定保存</el-button>
-                        <el-button v-else type="primary" @click="onAddTemplate">确定添加</el-button>
-                        <el-button @click="goBackPage">返回列表</el-button>
-                        <!--<el-button @click="testCallBack">回调</el-button>-->
-                    </el-form-item>
-                </el-form>
-            </div>
-        </div>
+    <div class="app-container">
+        <el-form ref="infoForm" :rules="infoRules" :model="infoForm" label-width="120px">
+            <el-form-item label="名称" prop="content">
+                <el-input v-model="infoForm.content" placeholder="请输入名称" autofocus></el-input>
+            </el-form-item>
+            <el-form-item>
+                <div class="form-table-box">
+                    <el-table :data="tableData" style="width: 100%" border stripe>
+                        <el-table-column prop="areaName" label="偏远地区"></el-table-column>
+                        <el-table-column label="操作" width="160">
+                            <template scope="scope">
+                                <el-button size="small" type="primary" plain
+                                            @click="handleRowEdit(scope.$index, scope.row)">编辑地区
+                                </el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </div>
+                <!--<div class="add-btn" v-if="tableData.length == 0">-->
+                <!--<el-button type="text" @click="add_template">+添加偏远地区</el-button>-->
+                <!--</div>-->
+            </el-form-item>
+            <el-form-item>
+                <el-button v-if="infoForm.id" type="primary" @click="onSaveTemplate">确定保存</el-button>
+                <el-button v-else type="primary" @click="onAddTemplate">确定添加</el-button>
+                <el-button @click="goBackPage">返回列表</el-button>
+                <!--<el-button @click="testCallBack">回调</el-button>-->
+            </el-form-item>
+        </el-form>
         <el-dialog size="tiny" title="设置偏远地区" :visible.sync="specEditVisible">
             <el-form ref="specForm" class="specFormDialig">
                 <el-form-item label="" label-width="100px">
@@ -58,12 +45,9 @@
 </template>
 
 <script>
-    import api from '@/config/api';
-
     export default {
         data() {
             return {
-
                 areaData: [],
                 selectedArea: [],
                 specEditVisible: false,
@@ -284,13 +268,13 @@
     .default-freight .text {
         width: 60px;
         float: left;
-        margin-left: 10px;
+        /* margin-left: 10px; */
     }
 
     .default-freight .text2 {
         width: 50px;
         float: left;
-        /*margin: 10px;*/
+        margin: 10px;
     }
 
     .float-right {
@@ -305,5 +289,8 @@
         border-top: none;
         display: flex;
         justify-content: space-between;
+    }
+    .operation-nav {
+        margin-bottom: 10px;
     }
 </style>

@@ -87,6 +87,32 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/shopSettings/freight',
+    hidden: true,
+    component: Layout,
+    children: [
+      {
+        path: 'exceptAreaPage',
+        component: () => import('@/views/shopSettings/freight/exceptAreaPage'),
+        name: 'ExceptAreaPage',
+        meta: { title: '偏远地区' }
+      }
+    ]
+  },
+  {
+    path: '/shopSettings/freight',
+    hidden: true,
+    component: Layout,
+    children: [
+      {
+        path: 'exceptAreaAddPage',
+        component: () => import('@/views/shopSettings/freight/exceptAreaAddPage'),
+        name: 'ExceptAreaAddPage',
+        meta: { title: '添加或编辑偏远地区' }
+      }
+    ]
+  },
+  {
     path: '/404',
     component: () => import('@/views/error-page/404'),
     hidden: true

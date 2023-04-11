@@ -1,6 +1,6 @@
 <template>
     <div class="app-container">
-        <div class="content-nav">
+        <div>
             <div class="operation-nav">
                 <!--<el-button icon="plus" @click="expressList">快递列表</el-button>-->
                 <el-button icon="plus" @click="exceptareaList">偏远地区</el-button>
@@ -11,13 +11,13 @@
             <div class="form-table-box">
                 <el-table :data="tableData" style="width: 100%" border stripe>
                     <el-table-column prop="id" label="ID" width="100px"></el-table-column>
-                    <el-table-column prop="name" label="名字"></el-table-column>
-                    <el-table-column prop="freight_type" label="按件/按重" width="200">
+                    <el-table-column prop="name" label="模版名称"></el-table-column>
+                    <el-table-column prop="freight_type" label="按件/按重/卖家包邮" width="200">
                         <template scope="scope">
-                            {{ scope.row.freight_type == 0 ? '按件' : '按重' }}
+                            {{ scope.row.charge_type == 1 ? '卖家包邮' : scope.row.freight_type == 0 ? '按件' : '按重' }}
                         </template>
                     </el-table-column>
-                    <el-table-column label="操作" width="170">
+                    <el-table-column label="操作" width="200">
                         <template scope="scope">
                             <el-button size="small" @click="handleRowEdit(scope.$index, scope.row)">编辑</el-button>
                             <el-button size="small" type="danger" @click="handleRowDelete(scope.$index, scope.row)">删除
@@ -43,7 +43,7 @@
                 this.$router.push({name: 'shipper'});
             },
             exceptareaList(){
-                this.$router.push({name: 'except_area'});
+                this.$router.push({path: '/shopSettings/freight/exceptAreaPage'});
             },
             addFreightTemplate(){
                 this.$router.push({path: '/shopSettings/freight/freightAddPage'});
